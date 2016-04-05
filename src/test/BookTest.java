@@ -1,17 +1,18 @@
-package test;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
-/**
- * Created by Dale on 05/04/2016.
- */
 public class BookTest {
 
-    @Test
-    public void checkingTests() {
-        assertTrue(true);
-    }
+	@Test
+	public void test() {
+		assertTrue(true);
+	}
+	
+	@Test
+	public void test2() {
+		fail("Not yet implemented");
+	}
 
 }
