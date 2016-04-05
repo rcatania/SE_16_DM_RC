@@ -15,8 +15,8 @@ public class Book {
         this.yearofpublication = yearofpublication;
         this.edition = edition;
     }
-    int method{
-        return 0
+    int method(){
+        return 0;
     }
 
 }
