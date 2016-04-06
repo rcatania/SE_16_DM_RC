@@ -14,7 +14,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-<reporting>
+<!--<reporting>
     <plugins>
       <plugin>
 	<groupId>org.apache.maven.plugins</groupId>
@@ -27,33 +27,28 @@
       </plugin>
 
       <plugin>
-	<groupId>org.codehaus.mojo</groupId>
-	<artifactId>emma-maven-plugin</artifactId>
-	<version>1.0-alpha-3</version>
-	<inherited>true</inherited>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>emma-maven-plugin</artifactId>
+  		<version>1.4-SNAPSHOT</version>
+        <configuration>
+        	                     <metadatas>coverage.em path</metadatas>
+                     <instrumentations>coverage.ec path</instrumentations>
+            <formats>html,xml,txt</formats>
+            <metadataFile>${project.build.directory}/coverage.em</metadataFile>
+            <outputDirectory>${project.build.directory}</outputDirectory>
+        </configuration>	
+        <inherited>true</inherited>
       </plugin>
 
     </plugins>
-  </reporting> 
+  </reporting>  -->
+
 
     <build>
 		
     <plugins>
 
-<!-- 	<plugin>
-		<groupId>org.codehaus.mojo</groupId>
-		<artifactId>emma-maven-plugin</artifactId>
-		<version>1.0-alpha-3</version>
-		<inherited>true</inherited>
-		<executions>
-		  <execution>
-			<phase>process-classes</phase>
-			<goals>
-				<goal>instrument</goal>
-			</goals>
-		  </execution>
-		</executions>
-	 </plugin> -->
+ 
 			
     </plugins>
   </build>
