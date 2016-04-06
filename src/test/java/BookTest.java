@@ -9,10 +9,5 @@ public class BookTest {
 	public void test() {
 		assertTrue(true);
 	}
-	
-	@Test
-	public void test2() {
-		fail("Not yet implemented");
-	}
 
 }
