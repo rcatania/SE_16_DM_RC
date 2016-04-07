@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import org.joda.time.LocalDate;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -155,7 +156,11 @@ public class LibraryTest {
 		l.addUser(u1);
 		
 		l.loanBookTo(bk1, u1);
-		fail("test not yet implemented");
+		LocalDate d = new LocalDate();
 		
+		bk1.setLoanedOutDate(d.minusWeeks(5));
+		
+		assertFalse(l.loanBookTo(bk2, u1));
+		assertTrue(l.loanBookTo(bk2, u2)); //make sure it has no effect on other users
 	}
 }
