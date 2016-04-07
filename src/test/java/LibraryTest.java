@@ -131,5 +131,23 @@ public class LibraryTest {
 		assertTrue(bk1.isLoanedOut());
 	}
 
+	@Test
+	public void basicReturningBooks() {
+		l.addUser(u1);
+		
+		l.loanBookTo(bk1, u1);
+		l.loanBookTo(bk2, u1);
+		l.loanBookTo(bk3, u1);
+		assertFalse(l.loanBookTo(bk4, u1));
+		
+		assertTrue(u1.getLoancount() == 3);
+		assertTrue(bk3.isLoanedOut());
+
+		l.returnBook(bk3);
+		
+		assertTrue(u1.getLoancount() == 2);
+		assertFalse(bk3.isLoanedOut());
+		assertTrue(l.loanBookTo(bk3, u1));
+	}
 
 }

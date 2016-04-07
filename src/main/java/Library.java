@@ -19,6 +19,12 @@ public class Library {
 		return lstUsers.contains(u);
 	}
 	
+	/**
+	 * 
+	 * @param b book
+	 * @param u user
+	 * @return True if the transaction was successful, false otherwise
+	 */
 	public boolean loanBookTo(Book b, User u) {
 		if (!u.eligibleToLoan() || b.isLoanedOut()) 
 			return false;
@@ -33,4 +39,9 @@ public class Library {
 	public void clearLibrary() {
 		lstUsers.clear();
 	}
+	
+	public void returnBook(Book b) {
+		
+	}
 }
+
