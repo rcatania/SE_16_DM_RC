@@ -1,26 +1,42 @@
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 
 public class LibraryTest {
 	Library l;
+	User u, u1, u2, u3, u4, u5;
+	Book bk1, bk2, bk3, bk4, bk5, bk6, bk7, bk8;
 	
 	@Before
 	public void setUp() {
 		l = new Library();
+		u = new User("John Micallef");
+		u1 = new User("Dale Micallef");
+		u2 = new User("Luke Spiteri");
+		u3 = new User("Andre Borg");
+		u4 = new User("Jeremy Curmi");
+		u5 = new User("Rachel Sammut");
+		
+		bk1 = new Book("How to Build Everything", "Steve Grey", Genre.DIY, 1999, 5);
+		bk2 = new Book("Black and White Photography", "John Rockwell", Genre.Hobbies, 2006, 2);
+		bk3 = new Book("The Fault In Our Stars", "John Greene", Genre.Fiction, 2008, 4);
+		bk4 = new Book("Java Cookbook", "Paul Singleton", Genre.IT, 2008, 4);
+		bk5 = new Book("C Primer Plus", "Stephen Prata", Genre.IT, 2011, 4);
+		bk6 = new Book("Advanced Programming in the Unix Environment", "Richard Stevens", Genre.IT, 1992, 4);
+		bk7 = new Book("Catching Fire", "Suzanne Collins", Genre.Fiction, 2006, 3);
+		bk8 = new Book("Coffee: from Java to Arabica", "John Mocha", Genre.Hobbies, 2011, 2);
+	}
+	
+	@After
+	public void dropEverything() {
+		l.clearLibrary();
 	}
 	
 	@Test
 	public void testAddUser() {
-		User u = new User("John Micallef");
-		User u1 = new User("Dale Micallef");
-		User u2 = new User("Luke Spiteri");
-		User u3 = new User("Andre Borg");
-		User u4 = new User("Jeremy Curmi");
-		User u5 = new User("Rachel Sammut");
-
 		assertTrue(l.numberOfUsers() == 0);
 
 		l.addUser(u);
@@ -37,13 +53,6 @@ public class LibraryTest {
 
 	@Test
 	public void testRemoveUser() {
-		User u = new User("John Micallef");
-		User u1 = new User("Dale Micallef");
-		User u2 = new User("Luke Spiteri");
-		User u3 = new User("Andre Borg");
-		User u4 = new User("Jeremy Curmi");
-		User u5 = new User("Rachel Sammut");
-
 		l.addUser(u);
 		l.addUser(u1);
 		l.addUser(u2);
@@ -64,6 +73,47 @@ public class LibraryTest {
 
 		assertTrue(l.numberOfUsers() == 2);
 		assertTrue(l.isUserRegistered(u5));
+	}
+
+	@Test
+	public void loanSameBookMultipleTimes() {
+		l.addUser(u1);
+
+		assertTrue(l.loanBookTo(bk1, u1));
+		assertTrue(l.loanBookTo(bk1, u1));
+		assertTrue(l.loanBookTo(bk1, u1));
+		assertTrue(l.loanBookTo(bk1, u1));	
+		
+		assertTrue(u1.getLoancount() == 1);
+		assertTrue(bk1.isLoanedOut());
+	}
+	
+	@Test
+	public void loanMoreThan3Books() {
+		l.addUser(u1);
+		
+		assertTrue(l.loanBookTo(bk1, u1));
+
+		assertTrue(l.loanBookTo(bk2, u1));
+		assertTrue(l.loanBookTo(bk3, u1));
+		
+		//because he has already loaned 3 books
+		assertFalse(l.loanBookTo(bk4, u1));
+		
+		assertTrue(bk1.isLoanedOut());
+		assertTrue(bk2.isLoanedOut());
+		assertTrue(bk3.isLoanedOut());
+	}
+
+	@Test
+	public void bookLoanedByMoreThanOnePerson() {
+		l.addUser(u1);
+		l.addUser(u2);
+		
+		assertTrue(l.loanBookTo(bk1, u1));
+		assertFalse(l.loanBookTo(bk1, u2));
+		
+		assertTrue(bk1.isLoanedOut());
 	}
 
 

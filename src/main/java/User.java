@@ -4,6 +4,12 @@ public class User {
 	
 	private int id;
 	private String name;
+	private int loancount;
+	
+	public int getLoancount() {
+		return loancount;
+	}
+	
 	public User(String name) {
 		super();
 		this.name = name;
@@ -21,5 +27,15 @@ public class User {
 		this.name = name;
 	}
 	
+	public void incrementLoancount() {
+		loancount++;
+	}
 	
+	public void decrementLoancount() {
+		loancount--;
+	}
+	
+	public boolean eligibleToLoan() {
+		return false; // stub
+	}
 }

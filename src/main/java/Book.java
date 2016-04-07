@@ -4,7 +4,20 @@
 public class Book {
 	private static int id_count = 0;
 	private int id;
-    public String getTitle() {
+	private boolean isLoanedOut;
+    public boolean isLoanedOut() {
+		return isLoanedOut;
+	}
+    
+	public void returnBook() {
+		//TODO:
+	}
+	
+	public void checkout() {
+		//TODO:
+	}
+	
+	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
@@ -51,9 +64,6 @@ public class Book {
         this.edition = edition;
         this.id = id_count;
         id_count++;
-    }
-    int method(){
-        return 0;
     }
 
 }

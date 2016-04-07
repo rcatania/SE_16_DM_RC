@@ -4,7 +4,7 @@ import org.junit.Test;
 
 
 public class UserTest {
-
+	
 	@Test
 	public void idTest() {
 		User u1 = new User("abc");
