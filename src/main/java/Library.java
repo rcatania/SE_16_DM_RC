@@ -29,7 +29,7 @@ public class Library {
 		if (!u.eligibleToLoan() || b.isLoanedOut()) 
 			return false;
 		
-		b.checkout(u.getId());
+		b.checkout(u);
 		u.incrementLoancount();
 		
 		return true;
@@ -41,7 +41,12 @@ public class Library {
 	}
 	
 	public void returnBook(Book b) {
+		if (!b.isLoanedOut())
+			return;
 		
+		User loanee = b.getLoaneeUser();
+		loanee.decrementLoancount();
+		b.returnBook();
 	}
 }
 

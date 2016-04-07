@@ -5,19 +5,23 @@ public class Book {
 	private static int id_count = 0;
 	private int id;
 	private boolean isLoanedOut;
-	private int loaneeUserId;
+	private User loaneeUser;
 	
     public boolean isLoanedOut() {
 		return isLoanedOut;
 	}
     
 	public void returnBook() {
-		loaneeUserId = -1;
+		loaneeUser = null;
 		isLoanedOut = false;
 	}
 	
-	public void checkout(int loanee_id) {
-		loaneeUserId = loanee_id; 
+	public User getLoaneeUser() {
+		return loaneeUser;
+	}
+
+	public void checkout(User u) {
+		loaneeUser = u; 
 		isLoanedOut = true;
 	}
 	
@@ -68,7 +72,7 @@ public class Book {
         this.edition = edition;
         this.id = id_count;
         this.isLoanedOut = false;
-        this.loaneeUserId = -1;
+        this.loaneeUser = null;
         id_count++;
     }
 
