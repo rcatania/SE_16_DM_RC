@@ -9,5 +9,7 @@ public enum Genre {
 	Cookbooks,
 	Religious,
 	Children,
-	DIY
+	DIY,
+	Hobbies,
+	Reference
 }

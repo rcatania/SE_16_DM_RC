@@ -16,10 +16,10 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	public String getGenre() {
+	public Genre getGenre() {
 		return genre;
 	}
-	public void setGenre(String genre) {
+	public void setGenre(Genre genre) {
 		this.genre = genre;
 	}
 	public int getYearofpublication() {
@@ -39,11 +39,11 @@ public class Book {
 	}
 	String title;
     String author;
-    String genre;
+    Genre genre;
     int yearofpublication;
     int edition;
 
-    public Book(String title, String author, String genre, int yearofpublication, int edition) {
+    public Book(String title, String author, Genre genre, int yearofpublication, int edition) {
         this.title = title;
         this.author = author;
         this.genre = genre;
