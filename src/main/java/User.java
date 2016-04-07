@@ -1,9 +1,9 @@
 
 public class User {
-	static int id_count = 0;
+	private static int id_count = 0;
 	
-	int id;
-	String name;
+	private int id;
+	private String name;
 	public User(String name) {
 		super();
 		this.name = name;

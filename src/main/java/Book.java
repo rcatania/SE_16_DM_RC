@@ -2,8 +2,8 @@
  * Created by Dale & Romario on 05/04/2016.
  */
 public class Book {
-	static int id_count = 0;
-	int id;
+	private static int id_count = 0;
+	private int id;
     public String getTitle() {
 		return title;
 	}
@@ -37,11 +37,11 @@ public class Book {
 	public int getId() {
 		return id;
 	}
-	String title;
-    String author;
-    Genre genre;
-    int yearofpublication;
-    int edition;
+	private String title;
+    private String author;
+    private Genre genre;
+    private int yearofpublication;
+    private int edition;
 
     public Book(String title, String author, Genre genre, int yearofpublication, int edition) {
         this.title = title;
