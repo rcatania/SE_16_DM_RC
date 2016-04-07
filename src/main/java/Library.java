@@ -1,18 +1,21 @@
+import java.util.ArrayList;
+
 
 public class Library {
+	ArrayList<User> lstUsers = new ArrayList<User>();
 	public void addUser(User u) {
-		
+		lstUsers.add(u);
 	}
 	
 	public void removeUser(User u) {
-		
+
 	}
 	
 	public int numberOfUsers() {
-		return 0;
+		return lstUsers.size();
 	}
 	
 	public boolean isUserRegistered(User u) {
-		return false;
+		return lstUsers.contains(u);
 	}
 }
