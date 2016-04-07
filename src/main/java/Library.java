@@ -20,7 +20,13 @@ public class Library {
 	}
 	
 	public boolean loanBookTo(Book b, User u) {
-		return false;
+		if (!u.eligibleToLoan() || b.isLoanedOut()) 
+			return false;
+		
+		b.checkout(u.getId());
+		u.incrementLoancount();
+		
+		return true;
 	}
 	
 	//for unit testing

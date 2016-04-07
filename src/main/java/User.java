@@ -36,6 +36,6 @@ public class User {
 	}
 	
 	public boolean eligibleToLoan() {
-		return false; // stub
+		return (loancount < 3);
 	}
 }

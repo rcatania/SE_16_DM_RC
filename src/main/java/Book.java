@@ -5,16 +5,20 @@ public class Book {
 	private static int id_count = 0;
 	private int id;
 	private boolean isLoanedOut;
+	private int loaneeUserId;
+	
     public boolean isLoanedOut() {
 		return isLoanedOut;
 	}
     
 	public void returnBook() {
-		//TODO:
+		loaneeUserId = -1;
+		isLoanedOut = false;
 	}
 	
-	public void checkout() {
-		//TODO:
+	public void checkout(int loanee_id) {
+		loaneeUserId = loanee_id; 
+		isLoanedOut = true;
 	}
 	
 	public String getTitle() {
@@ -63,6 +67,8 @@ public class Book {
         this.yearofpublication = yearofpublication;
         this.edition = edition;
         this.id = id_count;
+        this.isLoanedOut = false;
+        this.loaneeUserId = -1;
         id_count++;
     }
 
