@@ -95,9 +95,9 @@ public class LibraryTest {
 		l.addUser(u1);
 
 		assertTrue(l.loanBookTo(bk1, u1));
-		assertTrue(l.loanBookTo(bk1, u1));
-		assertTrue(l.loanBookTo(bk1, u1));
-		assertTrue(l.loanBookTo(bk1, u1));	
+		assertFalse(l.loanBookTo(bk1, u1));
+		assertFalse(l.loanBookTo(bk1, u1));
+		assertFalse(l.loanBookTo(bk1, u1));	
 		
 		assertTrue(u1.getLoancount() == 1);
 		assertTrue(bk1.isLoanedOut());
