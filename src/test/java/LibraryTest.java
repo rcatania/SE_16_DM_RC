@@ -74,6 +74,21 @@ public class LibraryTest {
 		assertTrue(l.numberOfUsers() == 2);
 		assertTrue(l.isUserRegistered(u5));
 	}
+	
+	@Test
+	public void basicLoanTest() {
+		l.addUser(u1);
+		
+		assertFalse(bk1.isLoanedOut());
+		assertTrue(u1.eligibleToLoan());
+		assertTrue(u1.getLoancount() == 0);
+		
+		assertTrue(l.loanBookTo(bk1, u1));
+		
+		assertTrue(bk1.isLoanedOut());
+		assertTrue(u1.eligibleToLoan());
+		assertTrue(u1.getLoancount() == 1);
+	}
 
 	@Test
 	public void loanSameBookMultipleTimes() {
