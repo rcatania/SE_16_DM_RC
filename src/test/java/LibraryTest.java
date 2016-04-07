@@ -37,9 +37,34 @@ public class LibraryTest {
 
 	@Test
 	public void testRemoveUser() {
-		fail("Not yet implemented");
-	}
+		User u = new User("John Micallef");
+		User u1 = new User("Dale Micallef");
+		User u2 = new User("Luke Spiteri");
+		User u3 = new User("Andre Borg");
+		User u4 = new User("Jeremy Curmi");
+		User u5 = new User("Rachel Sammut");
 
+		l.addUser(u);
+		l.addUser(u1);
+		l.addUser(u2);
+		l.addUser(u3);
+		l.addUser(u4);
+		l.addUser(u5);
+		
+		assertTrue(l.numberOfUsers() == 6);
+
+		l.removeUser(u4);		
+		assertTrue(l.numberOfUsers() == 5);
+
+		l.removeUser(u4);
+		assertTrue(l.numberOfUsers() == 5);
+		l.removeUser(u1);
+		l.removeUser(u2);
+		l.removeUser(u3);
+
+		assertTrue(l.numberOfUsers() == 2);
+		assertTrue(l.isUserRegistered(u4));
+	}
 	@Test
 	public void testNumberOfUsers() {
 		fail("Not yet implemented");
