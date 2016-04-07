@@ -65,14 +65,6 @@ public class LibraryTest {
 		assertTrue(l.numberOfUsers() == 2);
 		assertTrue(l.isUserRegistered(u4));
 	}
-	@Test
-	public void testNumberOfUsers() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	public void testIsUserRegistered() {
-		fail("Not yet implemented");
-	}
 
 }
