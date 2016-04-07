@@ -5,15 +5,17 @@ public class Catalogue {
 	private ArrayList<Book> cat = new ArrayList<Book>();
 	
 	public void addBook(Book b) {
-		
+		cat.add(b);
 	}
 	
 	public void clearCatalogue() {
-		
+		cat.clear();
 	}
  	
 	public ArrayList<Book> getAllBooks() {
-		return null;
+		ArrayList<Book> newLst = new ArrayList<Book>();
+		newLst.addAll(cat);
+		return newLst;
 	}
 	
 	public ArrayList<Book> searchByTitle(String title) {

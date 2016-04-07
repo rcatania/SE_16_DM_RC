@@ -13,7 +13,7 @@ public class CatalogueTest {
 	
 	@Before
 	public void setUp() {
-		Catalogue c = new Catalogue();
+		c = new Catalogue();
 		
 		bk1 = new Book("How to Build Everything", "Steve Grey", Genre.DIY, 1999, 5);
 		bk2 = new Book("Black and White Photography", "John Rockwell", Genre.Hobbies, 2006, 2);
@@ -37,7 +37,7 @@ public class CatalogueTest {
 	@Test
 	public void testGetAllBooks() {
 		ArrayList<Book> lst = c.getAllBooks();
-		assertTrue(lst.size() == 7);
+		assertTrue(lst.size() == 8);
 		assertTrue(lst.contains(bk1));
 		assertTrue(lst.contains(bk2));
 		assertTrue(lst.contains(bk3));
@@ -45,7 +45,7 @@ public class CatalogueTest {
 		assertTrue(lst.contains(bk5));
 		assertTrue(lst.contains(bk6));
 		assertTrue(lst.contains(bk7));
-		assertTrue(lst.contains(bk8));
+		assertTrue(lst.contains(bk8)); 
 	}
 
 	@Test
