@@ -2,7 +2,41 @@
  * Created by Dale & Romario on 05/04/2016.
  */
 public class Book {
-    String title;
+	int id;
+    public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public int getYearofpublication() {
+		return yearofpublication;
+	}
+	public void setYearofpublication(int yearofpublication) {
+		this.yearofpublication = yearofpublication;
+	}
+	public int getEdition() {
+		return edition;
+	}
+	public void setEdition(int edition) {
+		this.edition = edition;
+	}
+	public int getId() {
+		return id;
+	}
+	String title;
     String author;
     String genre;
     int yearofpublication;
