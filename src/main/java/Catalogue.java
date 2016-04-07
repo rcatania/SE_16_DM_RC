@@ -2,7 +2,16 @@ import java.util.ArrayList;
 
 
 public class Catalogue {
+	public ArrayList<Book> cat = new ArrayList<Book>();
 	
+	public void addBook(Book b) {
+		
+	}
+	
+	public void clearCatalogue() {
+		
+	}
+ 	
 	public ArrayList<Book> getAllBooks() {
 		return null;
 	}
