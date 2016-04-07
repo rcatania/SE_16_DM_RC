@@ -37,9 +37,16 @@ public class Catalogue {
 				newLst.add(bk);
 		}
 		
-		return newLst;	}
+		return newLst;	
+	}
 	
 	public ArrayList<Book> searchByYearOfPublication(int year) {
-		return null;
+		ArrayList<Book> newLst = new ArrayList<Book>();
+		for (Book bk : cat) {
+			if (bk.getYearofpublication() == year)
+				newLst.add(bk);
+		}
+		
+		return newLst;	
 	}
 }
