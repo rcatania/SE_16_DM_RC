@@ -1,3 +1,5 @@
+import org.joda.time.LocalDate;
+
 /**
  * Created by Dale & Romario on 05/04/2016.
  */
@@ -6,8 +8,17 @@ public class Book {
 	private int id;
 	private boolean isLoanedOut;
 	private User loaneeUser;
+	private LocalDate loanedOutDate;
 	
-    public boolean isLoanedOut() {
+    public LocalDate getLoanedOutDate() {
+		return loanedOutDate;
+	}
+
+	public void setLoanedOutDate(LocalDate loanedOutDate) {
+		this.loanedOutDate = loanedOutDate;
+	}
+
+	public boolean isLoanedOut() {
 		return isLoanedOut;
 	}
     
@@ -20,7 +31,7 @@ public class Book {
 		return loaneeUser;
 	}
 
-	public void checkout(User u) {
+	public void checkout(User u, LocalDate dateOfLoan) {
 		loaneeUser = u; 
 		isLoanedOut = true;
 	}

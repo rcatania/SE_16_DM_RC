@@ -150,4 +150,12 @@ public class LibraryTest {
 		assertTrue(l.loanBookTo(bk3, u1));
 	}
 
+	@Test 
+	public void test2WeeksDuration() {
+		l.addUser(u1);
+		
+		l.loanBookTo(bk1, u1);
+		fail("test not yet implemented");
+		
+	}
 }

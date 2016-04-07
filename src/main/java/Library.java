@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import org.joda.time.LocalDate;
+
 
 public class Library {
 	private ArrayList<User> lstUsers = new ArrayList<User>();
@@ -29,7 +31,7 @@ public class Library {
 		if (!u.eligibleToLoan() || b.isLoanedOut()) 
 			return false;
 		
-		b.checkout(u);
+		b.checkout(u, new LocalDate());
 		u.incrementLoancount();
 		
 		return true;
