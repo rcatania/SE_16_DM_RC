@@ -19,7 +19,15 @@ public class Catalogue {
 	}
 	
 	public ArrayList<Book> searchByTitle(String title) {
-		return null;
+		ArrayList<Book> newLst = new ArrayList<Book>();
+		String lc_title = title.toLowerCase();
+		for (Book bk : cat) {
+			String bookTitle = bk.getTitle().toLowerCase();
+			if (bookTitle != null && bookTitle.contains(lc_title))
+				newLst.add(bk);
+		}
+		
+		return newLst;
 	}
 	
 	public ArrayList<Book> searchByGenre(Genre g) {
