@@ -64,11 +64,11 @@ public class CatalogueTest {
 		ArrayList<Book> empty = c.searchByGenre(Genre.Children);
 		assertTrue(empty.isEmpty());
 		
-		assertTrue(c.searchByGenre(Genre.IT).size() == 4);
+		assertTrue(c.searchByGenre(Genre.IT).size() == 3);
 		assertTrue(c.searchByGenre(Genre.Hobbies).size() == 2);
 		assertTrue(c.searchByGenre(Genre.Fiction).size() == 2);
 		assertTrue(c.searchByGenre(Genre.DIY).size() == 1);
-		assertTrue(c.searchByGenre(Genre.DIY).get(0).getTitle().equals("How to Build Everything"));
+		assertTrue(c.searchByGenre(Genre.DIY).get(0).getTitle().equals("How to Build Everything")); 
 		
 	}
 
