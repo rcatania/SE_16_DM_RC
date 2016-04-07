@@ -8,7 +8,7 @@ public class Library {
 	}
 	
 	public void removeUser(User u) {
-
+		lstUsers.remove(u);
 	}
 	
 	public int numberOfUsers() {

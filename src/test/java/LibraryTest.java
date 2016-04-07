@@ -63,7 +63,7 @@ public class LibraryTest {
 		l.removeUser(u3);
 
 		assertTrue(l.numberOfUsers() == 2);
-		assertTrue(l.isUserRegistered(u4));
+		assertTrue(l.isUserRegistered(u5));
 	}
 
 
