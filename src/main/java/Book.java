@@ -2,6 +2,7 @@
  * Created by Dale & Romario on 05/04/2016.
  */
 public class Book {
+	static int id_count = 0;
 	int id;
     public String getTitle() {
 		return title;
@@ -48,6 +49,8 @@ public class Book {
         this.genre = genre;
         this.yearofpublication = yearofpublication;
         this.edition = edition;
+        this.id = id_count;
+        id_count++;
     }
     int method(){
         return 0;
