@@ -8,10 +8,6 @@ public class Catalogue {
 		cat.add(b);
 	}
 	
-	public void clearCatalogue() {
-		cat.clear();
-	}
- 	
 	public ArrayList<Book> getAllBooks() {
 		ArrayList<Book> newLst = new ArrayList<Book>();
 		newLst.addAll(cat);

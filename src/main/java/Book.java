@@ -34,6 +34,7 @@ public class Book {
 	public void checkout(User u, LocalDate dateOfLoan) {
 		loaneeUser = u; 
 		isLoanedOut = true;
+		loanedOutDate = dateOfLoan;
 	}
 	
 	public String getTitle() {

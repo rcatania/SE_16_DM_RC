@@ -5,6 +5,7 @@ import org.joda.time.LocalDate;
 
 public class Library {
 	private ArrayList<User> lstUsers = new ArrayList<User>();
+	
 	public void addUser(User u) {
 		lstUsers.add(u);
 	}
@@ -32,7 +33,7 @@ public class Library {
 			return false;
 		
 		b.checkout(u, new LocalDate());
-		u.incrementLoancount();
+		u.addBook(b);
 		
 		return true;
 	}
@@ -47,7 +48,7 @@ public class Library {
 			return;
 		
 		User loanee = b.getLoaneeUser();
-		loanee.decrementLoancount();
+		loanee.removeBook(b);
 		b.returnBook();
 	}
 }

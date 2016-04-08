@@ -144,8 +144,10 @@ public class LibraryTest {
 		assertTrue(u1.getLoancount() == 3);
 		assertTrue(bk3.isLoanedOut());
 
-		l.returnBook(bk3);
+		bk5.returnBook(); //book 5 has not been loaned out
 		
+		l.returnBook(bk3);
+
 		assertTrue(u1.getLoancount() == 2);
 		assertFalse(bk3.isLoanedOut());
 		assertTrue(l.loanBookTo(bk3, u1));
@@ -159,7 +161,7 @@ public class LibraryTest {
 		LocalDate d = new LocalDate();
 		
 		bk1.setLoanedOutDate(d.minusWeeks(5));
-		
+
 		assertFalse(l.loanBookTo(bk2, u1));
 		assertTrue(l.loanBookTo(bk2, u2)); //make sure it has no effect on other users
 	}
