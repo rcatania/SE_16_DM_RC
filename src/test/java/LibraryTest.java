@@ -79,6 +79,9 @@ public class LibraryTest {
 	@Test
 	public void basicLoanTest() {
 		l.addUser(u1);
+		assertFalse(bk1.isLoanedOut());
+		
+		l.returnBook(bk1);
 		
 		assertFalse(bk1.isLoanedOut());
 		assertTrue(u1.eligibleToLoan());
