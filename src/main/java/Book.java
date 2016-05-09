@@ -24,9 +24,6 @@ public class Book {
     
 	public void markReturned() {
 		isLoanedOut = false;
-		if (loaneeUser != null) {
-			loaneeUser.notifyBookReturned(this);
-		}
 		if (!isLoanedOut) //since it may be loaned out on reservation
 			loaneeUser = null;
 
@@ -37,9 +34,6 @@ public class Book {
 	}
 
 	public void checkout(User u, LocalDate dateOfLoan) {
-		if (dateOfLoan == null) {
-			dateOfLoan = new LocalDate();
-		}
 		loaneeUser = u; 
 		isLoanedOut = true;
 		loanedOutDate = dateOfLoan;

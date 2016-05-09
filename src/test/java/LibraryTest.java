@@ -188,34 +188,60 @@ public class LibraryTest {
 		brsys.reserve_book(u3, bk1);
 		brsys.reserve_book(u4, bk1);
 
-		int i =0;
-		for ( User u : brsys.res.get(bk1)) {
-			System.out.println(i + " USER " + u.getName());
-			i++;
-		}
-		
-		l.returnBook(bk1);
+		l.returnBook(bk1); //from u to u1
 		
 		assertTrue(u1.isBookLoanedByUser(bk1));
 		assertFalse(u.isBookLoanedByUser(bk1));
 		assertTrue(bk1.isLoanedOut()); //has been automatically loaned
 		
-		l.returnBook(bk1);
+		l.returnBook(bk1); //from u1 to u2
 		
 		assertTrue(bk1.isLoanedOut()); //has been automatically loaned
+		assertTrue(u2.isBookLoanedByUser(bk1));
+				
+		l.returnBook(bk1); //from u2 to u3
+		
+		assertTrue(bk1.isLoanedOut()); //has been automatically loaned
+		assertFalse(u2.isBookLoanedByUser(bk1));
 		assertTrue(u3.isBookLoanedByUser(bk1));
-		
-		System.out.println(" 1 LAST CURRENT LOANED OUT "+ bk1.getLoaneeUser().getName());
-		
-		l.returnBook(bk1);
-		System.out.println(" 2 LAST CURRENT LOANED OUT "+ bk1.getLoaneeUser().getName());
-
-		assertTrue(bk1.isLoanedOut()); //has been automatically loaned
-		assertFalse(u3.isBookLoanedByUser(bk1));
-		assertTrue(u4.isBookLoanedByUser(bk1));
 	
-		l.returnBook(bk1);
+		l.returnBook(bk1); //u3 to u4
+		assertTrue(bk1.isLoanedOut());
+		assertTrue(u4.isBookLoanedByUser(bk1));
+		
+		l.returnBook(bk1); //u4 to shelf
 		assertFalse(bk1.isLoanedOut());
-		//assertTrue(bk1.);
+	}
+	
+	@Test 
+	public void reservingBooksMoreThan3LoanedOut() {
+		// Only for coverage's sake
+		SearchField.valueOf("GENRE");
+		//
+		l.addUser(u);
+		l.addUser(u1);
+		l.addUser(u2);
+		l.addUser(u3);
+		l.addUser(u4);
+		l.addUser(u5);
+		
+		l.loanBookTo(bk1, u);
+
+		assertTrue(bk1.isLoanedOut());
+		BookReservationSystem brsys = BookReservationSystem.getInstance();
+		brsys.register_library(l);
+		brsys.reserve_book(u1, bk1);
+		brsys.reserve_book(u2, bk1);
+	
+		l.loanBookTo(bk2, u1);
+		l.loanBookTo(bk3, u1);
+		l.loanBookTo(bk4, u1);
+		
+		l.returnBook(bk1); //from u to u1
+		assertTrue(u2.isBookLoanedByUser(bk1));
+		
+		l.returnBook(bk2);
+		l.returnBook(bk1);
+		assertTrue(u1.isBookLoanedByUser(bk1));
 	}
 }

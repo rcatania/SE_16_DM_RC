@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 
 
 public class BookReservationSystem {
@@ -31,13 +29,9 @@ public class BookReservationSystem {
 		}
 				
 		queue.add(u);
-		System.out.println("QUEUE SIZE "+ queue.size() + " u " + u.getName() + " is empty " + queue.isEmpty());
-		System.out.println("QUEUE SIZE "+ queue.size() + " u " + u.getName() + " is empty " + queue.isEmpty());
 
-		assert(u.reservations.get(b) == null);
+		u.reservations.get(b);
 		u.reservations.put(b, queue.size());
-		System.out.println("SIZE INSIDE " +( res.get(b) == queue));
-
 	}
 	
 	public void notifyBookReturned(Book b) {
@@ -46,18 +40,9 @@ public class BookReservationSystem {
 			return;
 		}
 		
-		User next = null;
-		next = queue.get(0);
-		queue.remove(0);
-		l.loanBookTo(b, next);
-		next.reservations.remove(b);
-		
-		System.out.println("NEXT NAME "+next.getName());
-		
-		
-		/*
+		User next = null;		
 		int i = 0;
-		for ( i = 0; i < queue.size(); i++) { 
+		for (; i < queue.size(); i++) { 
 			next = queue.get(0);
 			queue.remove(0); //pop operation
 			if (next.eligibleToLoan()) {
@@ -72,7 +57,7 @@ public class BookReservationSystem {
 		
 		if (i == queue.size()) { //no-one is eligible to loan
 			return;
-		}*/
+		}
 				
 		notifyUsersOnQueue(b);
 	}

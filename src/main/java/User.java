@@ -3,8 +3,6 @@ import java.util.HashMap;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
-import org.joda.time.Duration;
-import org.joda.time.LocalDate;
 
 
 public class User {
@@ -53,7 +51,6 @@ public class User {
 		if (loancount >= 3)
 			return false;
 		
-		DateTime today = new LocalDate().toDateTimeAtCurrentTime();
 		for (Book b : books_loaned) {
 			DateTime timeOfLoan = b.getLoanedOutDate().toDateTimeAtStartOfDay();
 			int days = 
@@ -69,10 +66,5 @@ public class User {
 	public boolean isBookLoanedByUser(Book bk) {
 		return books_loaned.contains(bk);
 
-	}
-	
-	public void notifyBookReturned(Book b) {
-		BookReservationSystem bks = BookReservationSystem.getInstance();
-		bks.notifyBookReturned(b);
 	}
 }
