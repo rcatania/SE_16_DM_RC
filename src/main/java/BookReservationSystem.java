@@ -33,7 +33,7 @@ public class BookReservationSystem {
 		u.reservations.put(b, queue.size());
 	}
 	
-	public void return_book(Book b) {
+	public void notifyBookReturned(Book b) {
 		LinkedList<User> queue = res.get(b);
 		if (queue == null || queue.size() == 0) {
 			return;
@@ -57,10 +57,10 @@ public class BookReservationSystem {
 			return;
 		}
 				
-		notify(b);
+		notifyUsersOnQueue(b);
 	}
 	
-	public void notify(Book b) {
+	public void notifyUsersOnQueue(Book b) {
 		LinkedList<User> queue = res.get(b);
 		for (int i = 0; i < queue.size(); i++) {
 			Integer pos = queue.get(i).reservations.get(b);

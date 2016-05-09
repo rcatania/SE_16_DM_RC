@@ -69,4 +69,9 @@ public class User {
 	public boolean isBookLoanedByUser(Book bk) {
 		return books_loaned.contains(bk);
 	}
+	
+	public void notifyBookReturned(Book b) {
+		BookReservationSystem bks = BookReservationSystem.getInstance();
+		bks.notifyBookReturned(b);
+	}
 }

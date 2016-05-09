@@ -23,6 +23,8 @@ public class Book {
 	}
     
 	public void returnBook() {
+		if (loaneeUser != null)
+			loaneeUser.notifyBookReturned(this);
 		loaneeUser = null;
 		isLoanedOut = false;
 	}
