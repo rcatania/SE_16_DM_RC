@@ -49,6 +49,7 @@ public class Library {
 		
 		User loanee = b.getLoaneeUser();
 		loanee.removeBook(b);
+		System.out.println(1);
 		b.returnBook();
 	}
 }

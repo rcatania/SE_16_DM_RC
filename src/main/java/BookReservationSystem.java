@@ -7,10 +7,14 @@ import java.util.LinkedList;
 public class BookReservationSystem {
 	HashMap<Book, LinkedList<User>> res;
 	private static BookReservationSystem instance;
-	
+	private Library l;
 	private BookReservationSystem() {
 		instance = this;
 		res = new HashMap<Book, LinkedList<User>>();
+	}
+	
+	public void register_library(Library l) {
+		this.l = l;
 	}
 	
 	public static BookReservationSystem getInstance() {
@@ -34,6 +38,8 @@ public class BookReservationSystem {
 	}
 	
 	public void notifyBookReturned(Book b) {
+		System.out.println(3);
+
 		LinkedList<User> queue = res.get(b);
 		if (queue == null || queue.size() == 0) {
 			return;
@@ -44,7 +50,7 @@ public class BookReservationSystem {
 		for ( i = 0; i < queue.size(); i++) { 
 			next = queue.pop();
 			if (next.eligibleToLoan()) {
-				next.addBook(b);
+				l.loanBookTo(b, next);
 				next.reservations.remove(b);
 				break;
 			} else {

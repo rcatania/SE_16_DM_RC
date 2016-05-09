@@ -186,7 +186,12 @@ public class LibraryTest {
 
 		assertTrue(bk1.isLoanedOut());
 		BookReservationSystem brsys = BookReservationSystem.getInstance();
+		brsys.register_library(l);
 		brsys.reserve_book(u1, bk1);
+		brsys.reserve_book(u2, bk1);
+		brsys.reserve_book(u3, bk1);
+		brsys.reserve_book(u4, bk1);
+
 		bk1.returnBook();
 		assertFalse(u1.isBookLoanedByUser(bk1));
 		
