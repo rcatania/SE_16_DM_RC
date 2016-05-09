@@ -20,6 +20,17 @@ public class BookReservationSystem {
 	}
 	
 	public void reserve_book(User u, Book b) {
-	
+		LinkedList<User> queue = res.get(b);
+		if (queue == null) {
+			res.put(b, new LinkedList<User>());
+			queue = new LinkedList<User>();
+		}
+				
+		queue.add(u);
+		
+		assert(u.reservations.get(b) == null);
+		
+		u.reservations.put(b, queue.size());
 	}
+
 }
