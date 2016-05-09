@@ -10,7 +10,7 @@ import org.junit.Test;
 public class CatalogueTest {
 	private Catalogue c;
 	private Book[] lstAllBooks;
-	static Book bk1, bk2, bk3, bk4, bk5, bk6, bk7, bk8;
+	static Book bk1, bk2, bk3, bk4, bk5, bk6, bk7, bk8, bk9, bk10;
 	static boolean setup = false;
 	
 	@Before
@@ -29,7 +29,9 @@ public class CatalogueTest {
 		bk6 = new Book("Advanced Programming in the Unix Environment", "Richard Stevens", Genre.IT, 1992, 4);
 		bk7 = new Book("Catching Fire", "Suzanne Collins", Genre.Fiction, 2006, 3);
 		bk8 = new Book("Coffee: from Java to Arabica", "John Mocha", Genre.Hobbies, 2011, 2);
-		
+		bk9 = new Book("Most Horrible Murders", "John Mocha", Genre.Nonfiction, 1972, 2);
+		bk10 = new Book("1972 Guiness Bokk of Records", "John Mocha", Genre.Hobbies, 1972, 2);
+
 		c.addBook(bk1);
 		c.addBook(bk2);
 		c.addBook(bk3);
@@ -38,6 +40,8 @@ public class CatalogueTest {
 		c.addBook(bk6);
 		c.addBook(bk7);
 		c.addBook(bk8);
+		c.addBook(bk9);
+		c.addBook(bk10);
 		
 		setup = true;
 	}
@@ -45,7 +49,7 @@ public class CatalogueTest {
 	@Test
 	public void testGetAllBooks() {
 		ArrayList<Book> lst = c.getAllBooks();
-		assertTrue(lst.size() == 8);
+		assertTrue(lst.size() == 10);
 		assertTrue(lst.contains(bk1));
 		assertTrue(lst.contains(bk2));
 		assertTrue(lst.contains(bk3));
@@ -54,6 +58,8 @@ public class CatalogueTest {
 		assertTrue(lst.contains(bk6));
 		assertTrue(lst.contains(bk7));
 		assertTrue(lst.contains(bk8)); 
+		assertTrue(lst.contains(bk9)); 
+		assertTrue(lst.contains(bk10)); 
 	}
 
 	@Test
@@ -72,7 +78,7 @@ public class CatalogueTest {
 		assertTrue(empty.isEmpty());
 		
 		assertTrue(c.searchByGenre(Genre.IT).size() == 3);
-		assertTrue(c.searchByGenre(Genre.Hobbies).size() == 2);
+		assertTrue(c.searchByGenre(Genre.Hobbies).size() == 3);
 		assertTrue(c.searchByGenre(Genre.Fiction).size() == 2);
 		assertTrue(c.searchByGenre(Genre.DIY).size() == 1);
 		assertTrue(c.searchByGenre(Genre.DIY).get(0).getTitle().equals("How to Build Everything")); 
@@ -95,9 +101,17 @@ public class CatalogueTest {
 	@Test
 	public void singleCatalogueTest() {
 		Catalogue c2 = Catalogue.getInstance();
-		assertTrue(c2.getAllBooks().size() == 8);
+		assertTrue(c2.getAllBooks().size() == 10);
 	}
 	
+	@Test
+	public void compoundSearchTest() {
+		ArrayList<Book> one = c.searchByTitle("murders");
+		ArrayList<Book> two = c.searchByYearOfPublication(1972);
+		one.retainAll(two);
+		System.out.println(one.size());
+		assertTrue(one.size() == 1);
+	}
 
 	
 }
