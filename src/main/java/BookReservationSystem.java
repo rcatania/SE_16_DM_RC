@@ -32,5 +32,37 @@ public class BookReservationSystem {
 		
 		u.reservations.put(b, queue.size());
 	}
-
+	
+	public void return_book(Book b) {
+		LinkedList<User> queue = res.get(b);
+		if (queue == null || queue.size() == 0) {
+			return;
+		}
+		
+		User next = null;
+		int i = 0;
+		for ( i = 0; i < queue.size(); i++) { 
+			next = queue.pop();
+			if (next.eligibleToLoan()) {
+				next.addBook(b);
+				break;
+			} else {
+				//adding to the end of the queue, so that they may get it in the future
+				queue.push(next);
+			}
+		}
+		
+		if (i == queue.size()) { //no-one is eligible to loan
+			return;
+		}
+		
+		notify(b);
+	}
+	
+	public void notify(Book b) {
+		LinkedList<User> queue = res.get(b);
+		for (int i = 0; i < queue.size(); i++) {
+		}
+	}
 }
+	
