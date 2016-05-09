@@ -23,14 +23,17 @@ public class Book {
 	}
     
 	public void returnBook() {
-		System.out.println(2);
 
+		System.out.println(2);
+		isLoanedOut = false;
 		if (loaneeUser != null) {
 			System.out.println();
+
 			loaneeUser.notifyBookReturned(this);
 		}
-		loaneeUser = null;
-		isLoanedOut = false;
+		if (!isLoanedOut) //since it may be loaned out on reservation
+			loaneeUser = null;
+
 	}
 	
 	public User getLoaneeUser() {
