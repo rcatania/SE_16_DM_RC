@@ -9,6 +9,7 @@ public class Filter {
 	Filter(String argument, SearchField searchfield) {
 		this.argument = argument;
 		this.searchfield = searchfield;
+		childfilters = new ArrayList<Filter>();
 	}
 	
 	Filter addChildFilter(Filter f) {
@@ -25,15 +26,18 @@ public class Filter {
 		switch(searchfield) {
 		case GENRE:{
 			condition = b.getGenre() == Genre.valueOf(argument);
+			break;
 		}
 		case TITLE : {
 			String bookTitle = b.getTitle().toLowerCase();
 			if (bookTitle != null && bookTitle.contains(argument))
 				condition = true;
+			break;
 		}
 		case YEAR_OF_PUBLICATION: {
 			int year = Integer.parseInt(argument);
 			condition = year == b.getYearofpublication();
+			break;
 		}
 		}
 		
