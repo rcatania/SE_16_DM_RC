@@ -110,6 +110,6 @@ public class CatalogueTest {
 		ArrayList<Book> one = c.searchForBooks(new Filter("murders", SearchField.TITLE).addChildFilter("1972", SearchField.YEAR_OF_PUBLICATION));
 		assertTrue(one.size() == 1);
 	}
-
+	
 	
 }

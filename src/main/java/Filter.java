@@ -18,8 +18,7 @@ public class Filter {
 	}
 	
 	Filter addChildFilter(String argument, SearchField searchfield) {
-		childfilters.add(new Filter(argument, searchfield));
-		return this;
+		return addChildFilter(new Filter(argument, searchfield));
 	}
 	public boolean checkBookFits(Book b) {
 		boolean condition = false;
@@ -30,7 +29,7 @@ public class Filter {
 		}
 		case TITLE : {
 			String bookTitle = b.getTitle().toLowerCase();
-			if (bookTitle != null && bookTitle.contains(argument))
+			if (bookTitle.contains(argument))
 				condition = true;
 			break;
 		}
