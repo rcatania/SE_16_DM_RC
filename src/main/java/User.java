@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -13,6 +14,7 @@ public class User {
 	private String name;
 	private int loancount;
 	private ArrayList<Book> books_loaned;
+	public HashMap<Book, Integer> reservations;
 	
 	public int getLoancount() {
 		return loancount;
@@ -23,6 +25,7 @@ public class User {
 		this.name = name;
 		this.id = id_count;
 		this.books_loaned = new ArrayList<Book>();
+		reservations = new HashMap<Book, Integer>();
 		id_count++;
 	}
 	public int getId() {

@@ -45,6 +45,7 @@ public class BookReservationSystem {
 			next = queue.pop();
 			if (next.eligibleToLoan()) {
 				next.addBook(b);
+				next.reservations.remove(b);
 				break;
 			} else {
 				//adding to the end of the queue, so that they may get it in the future
@@ -55,13 +56,15 @@ public class BookReservationSystem {
 		if (i == queue.size()) { //no-one is eligible to loan
 			return;
 		}
-		
+				
 		notify(b);
 	}
 	
 	public void notify(Book b) {
 		LinkedList<User> queue = res.get(b);
 		for (int i = 0; i < queue.size(); i++) {
+			Integer pos = queue.get(i).reservations.get(b);
+			queue.get(i).reservations.put(b, pos-1);
 		}
 	}
 }
