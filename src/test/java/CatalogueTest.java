@@ -64,24 +64,24 @@ public class CatalogueTest {
 
 	@Test
 	public void testSearchByTitle() {
-		ArrayList<Book> empty = c.searchByTitle("sjdfsdjfl");
+		ArrayList<Book> empty = c.searchForBooks(new Filter( "sjdfsdjfl", SearchField.TITLE));
 		assertTrue(empty.isEmpty());
 				
-		ArrayList<Book> javaBooks = c.searchByTitle("java");
+		ArrayList<Book> javaBooks =  c.searchForBooks(new Filter( "java", SearchField.TITLE));
 		assertTrue(javaBooks.size() == 2);
 		assertTrue(javaBooks.contains(bk8) && javaBooks.contains(bk4));
 	}
 
 	@Test
 	public void testSearchByGenre() {
-		ArrayList<Book> empty = c.searchByGenre(Genre.Children);
+		ArrayList<Book> empty =  c.searchForBooks(new Filter(Genre.Children.name(), SearchField.GENRE));
 		assertTrue(empty.isEmpty());
 		
-		assertTrue(c.searchByGenre(Genre.IT).size() == 3);
-		assertTrue(c.searchByGenre(Genre.Hobbies).size() == 3);
-		assertTrue(c.searchByGenre(Genre.Fiction).size() == 2);
-		assertTrue(c.searchByGenre(Genre.DIY).size() == 1);
-		assertTrue(c.searchByGenre(Genre.DIY).get(0).getTitle().equals("How to Build Everything")); 
+		assertTrue( c.searchForBooks(new Filter(Genre.Children.name(), SearchField.GENRE)).size() == 3);
+		assertTrue( c.searchForBooks(new Filter(Genre.Hobbies.name(), SearchField.GENRE)).size() == 3);
+		assertTrue( c.searchForBooks(new Filter(Genre.Fiction.name(), SearchField.GENRE)).size() == 2);
+		assertTrue( c.searchForBooks(new Filter(Genre.DIY.name(), SearchField.GENRE)).size() == 1);
+		assertTrue( c.searchForBooks(new Filter(Genre.DIY.name(), SearchField.GENRE)).get(0).getTitle().equals("How to Build Everything")); 
 		
 	}
 
