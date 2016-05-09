@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 
@@ -52,11 +53,10 @@ public class CatalogueTest {
 	public void testSearchByTitle() {
 		ArrayList<Book> empty = c.searchByTitle("sjdfsdjfl");
 		assertTrue(empty.isEmpty());
-		
+				
 		ArrayList<Book> javaBooks = c.searchByTitle("java");
 		assertTrue(javaBooks.size() == 2);
 		assertTrue(javaBooks.contains(bk8) && javaBooks.contains(bk4));
-		
 	}
 
 	@Test
@@ -85,4 +85,12 @@ public class CatalogueTest {
 		assertTrue(books99.get(0).getGenre().equals(Genre.DIY));
 	}
 
+	@Test
+	public void singleCatalogueTest() {
+		Catalogue c2 = new Catalogue();
+		assertTrue(c2.getAllBooks().size() == 8);
+	}  
+	
+
+	
 }
