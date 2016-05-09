@@ -54,4 +54,14 @@ public class Catalogue {
 		
 		return newLst;	
 	}
+	
+	public ArrayList<Book> searchForBooks(Filter f) {
+		ArrayList<Book> updated = new ArrayList<Book>();
+		for (Book b : cat) {
+			if (f.checkBookFits(b)) {
+				updated.add(b);
+			}
+		}
+		return updated;
+	}
 }

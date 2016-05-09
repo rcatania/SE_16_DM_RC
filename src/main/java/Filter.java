@@ -15,6 +15,9 @@ public class Filter {
 		childfilters.add(f);
 	}
 	
+	void addChildFilter(String argument, SearchField searchfield) {
+		childfilters.add(new Filter(argument, searchfield));
+	}
 	public boolean checkBookFits(Book b) {
 		boolean condition = false;
 		switch(searchfield) {
