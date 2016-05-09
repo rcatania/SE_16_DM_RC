@@ -168,4 +168,26 @@ public class LibraryTest {
 		assertFalse(l.loanBookTo(bk2, u1));
 		assertTrue(l.loanBookTo(bk2, u2)); //make sure it has no effect on other users
 	}
+	
+	@Test 
+	public void reservationSystem() {
+		l.addUser(u);
+		l.addUser(u1);
+		l.addUser(u2);
+		l.addUser(u3);
+		l.addUser(u4);
+		l.addUser(u5);
+		
+		l.loanBookTo(bk1, u);
+		l.loanBookTo(bk1, u1);
+		l.loanBookTo(bk1, u2);
+		l.loanBookTo(bk1, u3);
+		l.loanBookTo(bk1, u4);
+
+		assertTrue(bk1.isLoanedOut());
+		BookReservationSystem brsys = BookReservationSystem.getInstance();
+		brsys.reserve_book(u1, bk1);
+		
+		//assertTrue(bk1.);
+	}
 }
