@@ -25,7 +25,7 @@ public class Filter {
 		boolean condition = false;
 		switch(searchfield) {
 		case GENRE:{
-			condition = b.getGenre() == Genre.valueOf(argument);
+			condition = b.getGenre().ordinal() == Genre.valueOf(argument).ordinal();
 			break;
 		}
 		case TITLE : {

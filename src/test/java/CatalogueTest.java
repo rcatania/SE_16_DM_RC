@@ -77,7 +77,8 @@ public class CatalogueTest {
 		ArrayList<Book> empty =  c.searchForBooks(new Filter(Genre.Children.name(), SearchField.GENRE));
 		assertTrue(empty.isEmpty());
 		
-		assertTrue( c.searchForBooks(new Filter(Genre.Children.name(), SearchField.GENRE)).size() == 3);
+		assertTrue( c.searchForBooks(new Filter(Genre.Children.name(), SearchField.GENRE)).size() == 0);
+		assertTrue( c.searchForBooks(new Filter(Genre.IT.name(), SearchField.GENRE)).size() == 3);
 		assertTrue( c.searchForBooks(new Filter(Genre.Hobbies.name(), SearchField.GENRE)).size() == 3);
 		assertTrue( c.searchForBooks(new Filter(Genre.Fiction.name(), SearchField.GENRE)).size() == 2);
 		assertTrue( c.searchForBooks(new Filter(Genre.DIY.name(), SearchField.GENRE)).size() == 1);
