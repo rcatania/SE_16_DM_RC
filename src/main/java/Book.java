@@ -23,8 +23,12 @@ public class Book {
 	}
     
 	public void returnBook() {
-		if (loaneeUser != null)
+		System.out.println(2);
+
+		if (loaneeUser != null) {
+			System.out.println();
 			loaneeUser.notifyBookReturned(this);
+		}
 		loaneeUser = null;
 		isLoanedOut = false;
 	}
@@ -34,6 +38,9 @@ public class Book {
 	}
 
 	public void checkout(User u, LocalDate dateOfLoan) {
+		if (dateOfLoan == null) {
+			dateOfLoan = new LocalDate();
+		}
 		loaneeUser = u; 
 		isLoanedOut = true;
 		loanedOutDate = dateOfLoan;
