@@ -3,7 +3,16 @@ import java.util.ArrayList;
 
 public class Catalogue {
 	private ArrayList<Book> cat = new ArrayList<Book>();
+	private static Catalogue instance;
+	private Catalogue() { };
 	
+	public static Catalogue getInstance() {
+		if (instance == null) {
+			instance = new Catalogue();
+		}
+		return instance;
+	}
+
 	public void addBook(Book b) {
 		cat.add(b);
 	}

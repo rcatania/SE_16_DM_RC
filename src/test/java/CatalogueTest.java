@@ -10,11 +10,16 @@ import org.junit.Test;
 public class CatalogueTest {
 	private Catalogue c;
 	private Book[] lstAllBooks;
-	Book bk1, bk2, bk3, bk4, bk5, bk6, bk7, bk8;
+	static Book bk1, bk2, bk3, bk4, bk5, bk6, bk7, bk8;
+	static boolean setup = false;
 	
 	@Before
 	public void setUp() {
-		c = new Catalogue();
+		//c = new Catalogue();
+		c = Catalogue.getInstance();
+		
+		if (setup)
+			return;
 		
 		bk1 = new Book("How to Build Everything", "Steve Grey", Genre.DIY, 1999, 5);
 		bk2 = new Book("Black and White Photography", "John Rockwell", Genre.Hobbies, 2006, 2);
@@ -33,6 +38,8 @@ public class CatalogueTest {
 		c.addBook(bk6);
 		c.addBook(bk7);
 		c.addBook(bk8);
+		
+		setup = true;
 	}
 	
 	@Test
@@ -87,9 +94,9 @@ public class CatalogueTest {
 
 	@Test
 	public void singleCatalogueTest() {
-		Catalogue c2 = new Catalogue();
+		Catalogue c2 = Catalogue.getInstance();
 		assertTrue(c2.getAllBooks().size() == 8);
-	}  
+	}
 	
 
 	
