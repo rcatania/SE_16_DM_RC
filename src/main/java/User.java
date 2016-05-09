@@ -62,4 +62,8 @@ public class User {
 		
 		return true;
 	}
+	
+	public boolean isBookLoanedByUser(Book bk) {
+		return books_loaned.contains(bk);
+	}
 }

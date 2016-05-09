@@ -187,7 +187,24 @@ public class LibraryTest {
 		assertTrue(bk1.isLoanedOut());
 		BookReservationSystem brsys = BookReservationSystem.getInstance();
 		brsys.reserve_book(u1, bk1);
+		bk1.returnBook();
+		assertFalse(u1.isBookLoanedByUser(bk1));
 		
+		assertTrue(bk1.isLoanedOut()); //has been automatically loaned
+		assertTrue(u2.isBookLoanedByUser(bk1));
+		bk1.returnBook();
+		
+		assertTrue(bk1.isLoanedOut()); //has been automatically loaned
+		assertTrue(u3.isBookLoanedByUser(bk1));
+		
+		bk1.returnBook();
+		
+		assertTrue(bk1.isLoanedOut()); //has been automatically loaned
+		assertFalse(u3.isBookLoanedByUser(bk1));
+		assertTrue(u4.isBookLoanedByUser(bk1));
+	
+		bk1.returnBook();
+		assertFalse(bk1.isLoanedOut());
 		//assertTrue(bk1.);
 	}
 }
