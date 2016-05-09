@@ -87,13 +87,13 @@ public class CatalogueTest {
 
 	@Test
 	public void testSearchByYearOfPublication() {
-		ArrayList<Book> empty = c.searchByYearOfPublication(1898);
+		ArrayList<Book> empty = c.searchForBooks(new Filter("1898", SearchField.YEAR_OF_PUBLICATION));
 		assertTrue(empty.isEmpty());
 		
-		ArrayList<Book> books2011 = c.searchByYearOfPublication(2011);
+		ArrayList<Book> books2011 = c.searchForBooks(new Filter("2011", SearchField.YEAR_OF_PUBLICATION));
 		assertTrue(books2011.size() == 2);
 		
-		ArrayList<Book> books99 = c.searchByYearOfPublication(1999);
+		ArrayList<Book> books99 = c.searchForBooks(new Filter("1999", SearchField.YEAR_OF_PUBLICATION)); 
 		assertTrue(books99.size() == 1);
 		assertTrue(books99.get(0).getGenre().equals(Genre.DIY));
 	}
@@ -106,10 +106,7 @@ public class CatalogueTest {
 	
 	@Test
 	public void compoundSearchTest() {
-		ArrayList<Book> one = c.searchByTitle("murders");
-		ArrayList<Book> two = c.searchByYearOfPublication(1972);
-		one.retainAll(two);
-		System.out.println(one.size());
+		ArrayList<Book> one = c.searchForBooks(new Filter("murders", SearchField.TITLE).addChildFilter("1972", SearchField.YEAR_OF_PUBLICATION));
 		assertTrue(one.size() == 1);
 	}
 

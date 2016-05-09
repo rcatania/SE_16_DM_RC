@@ -11,12 +11,14 @@ public class Filter {
 		this.searchfield = searchfield;
 	}
 	
-	void addChildFilter(Filter f) {
+	Filter addChildFilter(Filter f) {
 		childfilters.add(f);
+		return this;
 	}
 	
-	void addChildFilter(String argument, SearchField searchfield) {
+	Filter addChildFilter(String argument, SearchField searchfield) {
 		childfilters.add(new Filter(argument, searchfield));
+		return this;
 	}
 	public boolean checkBookFits(Book b) {
 		boolean condition = false;
