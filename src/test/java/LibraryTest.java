@@ -147,7 +147,7 @@ public class LibraryTest {
 		assertTrue(u1.getLoancount() == 3);
 		assertTrue(bk3.isLoanedOut());
 
-		bk5.returnBook(); //book 5 has not been loaned out
+		bk5.markReturned(); //book 5 has not been loaned out
 		
 		l.returnBook(bk3);
 
@@ -179,10 +179,6 @@ public class LibraryTest {
 		l.addUser(u5);
 		
 		l.loanBookTo(bk1, u);
-		l.loanBookTo(bk1, u1);
-		l.loanBookTo(bk1, u2);
-		l.loanBookTo(bk1, u3);
-		l.loanBookTo(bk1, u4);
 
 		assertTrue(bk1.isLoanedOut());
 		BookReservationSystem brsys = BookReservationSystem.getInstance();
@@ -192,23 +188,33 @@ public class LibraryTest {
 		brsys.reserve_book(u3, bk1);
 		brsys.reserve_book(u4, bk1);
 
-		bk1.returnBook();
-		assertFalse(u1.isBookLoanedByUser(bk1));
+		int i =0;
+		for ( User u : brsys.res.get(bk1)) {
+			System.out.println(i + " USER " + u.getName());
+			i++;
+		}
 		
+		l.returnBook(bk1);
+		
+		assertTrue(u1.isBookLoanedByUser(bk1));
+		assertFalse(u.isBookLoanedByUser(bk1));
 		assertTrue(bk1.isLoanedOut()); //has been automatically loaned
-		assertTrue(u2.isBookLoanedByUser(bk1));
-		bk1.returnBook();
+		
+		l.returnBook(bk1);
 		
 		assertTrue(bk1.isLoanedOut()); //has been automatically loaned
 		assertTrue(u3.isBookLoanedByUser(bk1));
 		
-		bk1.returnBook();
+		System.out.println(" 1 LAST CURRENT LOANED OUT "+ bk1.getLoaneeUser().getName());
 		
+		l.returnBook(bk1);
+		System.out.println(" 2 LAST CURRENT LOANED OUT "+ bk1.getLoaneeUser().getName());
+
 		assertTrue(bk1.isLoanedOut()); //has been automatically loaned
 		assertFalse(u3.isBookLoanedByUser(bk1));
 		assertTrue(u4.isBookLoanedByUser(bk1));
 	
-		bk1.returnBook();
+		l.returnBook(bk1);
 		assertFalse(bk1.isLoanedOut());
 		//assertTrue(bk1.);
 	}

@@ -31,8 +31,8 @@ public class Library {
 	public boolean loanBookTo(Book b, User u) {
 		if (!u.eligibleToLoan() || b.isLoanedOut()) 
 			return false;
-		
-		b.checkout(u, new LocalDate());
+		LocalDate d = new LocalDate();
+		b.checkout(u, d);
 		u.addBook(b);
 		
 		return true;
@@ -43,14 +43,16 @@ public class Library {
 		lstUsers.clear();
 	}
 	
-	public void returnBook(Book b) {
+	public void returnBook(Book b) {// TODO: make sure this is eventually called by the observer
 		if (!b.isLoanedOut())
 			return;
 		
 		User loanee = b.getLoaneeUser();
 		loanee.removeBook(b);
-		System.out.println(1);
-		b.returnBook();
+		b.markReturned();
+		
+		BookReservationSystem bks = BookReservationSystem.getInstance();
+		bks.notifyBookReturned(b);
 	}
 }
 

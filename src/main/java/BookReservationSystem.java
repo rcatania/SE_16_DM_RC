@@ -1,16 +1,16 @@
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 
 
 public class BookReservationSystem {
-	HashMap<Book, LinkedList<User>> res;
+	public HashMap<Book, ArrayList<User>> res;
 	private static BookReservationSystem instance;
 	private Library l;
 	private BookReservationSystem() {
 		instance = this;
-		res = new HashMap<Book, LinkedList<User>>();
+		res = new HashMap<Book, ArrayList<User>>();
 	}
 	
 	public void register_library(Library l) {
@@ -24,53 +24,64 @@ public class BookReservationSystem {
 	}
 	
 	public void reserve_book(User u, Book b) {
-		LinkedList<User> queue = res.get(b);
+		ArrayList<User> queue = res.get(b);
 		if (queue == null) {
-			res.put(b, new LinkedList<User>());
-			queue = new LinkedList<User>();
+			queue = new ArrayList<User>();
+			res.put(b, queue);
 		}
 				
 		queue.add(u);
-		
+		System.out.println("QUEUE SIZE "+ queue.size() + " u " + u.getName() + " is empty " + queue.isEmpty());
+		System.out.println("QUEUE SIZE "+ queue.size() + " u " + u.getName() + " is empty " + queue.isEmpty());
+
 		assert(u.reservations.get(b) == null);
-		
 		u.reservations.put(b, queue.size());
+		System.out.println("SIZE INSIDE " +( res.get(b) == queue));
+
 	}
 	
 	public void notifyBookReturned(Book b) {
-		System.out.println(3);
-
-		LinkedList<User> queue = res.get(b);
+		ArrayList<User> queue = res.get(b);
 		if (queue == null || queue.size() == 0) {
 			return;
 		}
 		
 		User next = null;
+		next = queue.get(0);
+		queue.remove(0);
+		l.loanBookTo(b, next);
+		next.reservations.remove(b);
+		
+		System.out.println("NEXT NAME "+next.getName());
+		
+		
+		/*
 		int i = 0;
 		for ( i = 0; i < queue.size(); i++) { 
-			next = queue.pop();
+			next = queue.get(0);
+			queue.remove(0); //pop operation
 			if (next.eligibleToLoan()) {
 				l.loanBookTo(b, next);
 				next.reservations.remove(b);
 				break;
 			} else {
 				//adding to the end of the queue, so that they may get it in the future
-				queue.push(next);
+				queue.add(next);
 			}
-		}
+		} 
 		
 		if (i == queue.size()) { //no-one is eligible to loan
 			return;
-		}
+		}*/
 				
 		notifyUsersOnQueue(b);
 	}
 	
 	public void notifyUsersOnQueue(Book b) {
-		LinkedList<User> queue = res.get(b);
+		ArrayList<User> queue = res.get(b);
 		for (int i = 0; i < queue.size(); i++) {
 			Integer pos = queue.get(i).reservations.get(b);
-			queue.get(i).reservations.put(b, pos-1);
+			queue.get(i).reservations.put(b, pos);
 		}
 	}
 }

@@ -22,13 +22,9 @@ public class Book {
 		return isLoanedOut;
 	}
     
-	public void returnBook() {
-
-		System.out.println(2);
+	public void markReturned() {
 		isLoanedOut = false;
 		if (loaneeUser != null) {
-			System.out.println();
-
 			loaneeUser.notifyBookReturned(this);
 		}
 		if (!isLoanedOut) //since it may be loaned out on reservation
